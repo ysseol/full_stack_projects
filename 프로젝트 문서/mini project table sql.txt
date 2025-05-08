@@ -1,0 +1,18 @@
+create table board (
+id varchar2(50) primary key,
+title varchar2(50) not null,
+content varchar2(50) not null,
+reg_date date default sysdate
+);
+
+commit;
+
+create table member2 (
+userid varchar2(50) primary key,
+pwd varchar2(50) not null,
+name varchar2(50) not null
+);
+
+commit;
+
+

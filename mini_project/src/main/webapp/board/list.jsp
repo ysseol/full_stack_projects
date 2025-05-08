@@ -136,7 +136,7 @@ $(document).ready(function() {
     });
 	
 	$("#btn_logout").click(function() {
-		if(confirm("로그 아웃할까요?")){
+		if(confirm("로그아웃 하시겠습니까?")){
 			document.form1.action = "<%=request.getContextPath()%>/board_servlet/logout.do";
 			document.form1.submit();
 		}

@@ -25,14 +25,14 @@ $(function() {
 		let content = $("textarea[name='content']").val().trim();
 
 		if (title === "") {
-			if (confirm("제목을 입력해 주세요.")) {
+			if (alert("제목을 입력해 주세요.")) {
 				$("input[name='title']").focus();
 			}
 			return;
 		}
 
 		if (content === "") {
-			if (confirm("내용을 입력해 주세요.")) {
+			if (alert("내용을 입력해 주세요.")) {
 				$("textarea[name='content']").focus();
 			}
 			return;

@@ -12,6 +12,23 @@ $(function() {
 	
 	$("input[name=userid]").keyup(function(key){
 		if(key.keyCode == 13) {
+			let userid = $("input[name='userid']").val().trim();
+			let pwd = $("input[name='pwd']").val().trim();
+
+			if (userid === "") {
+				if (alert("아이디를 입력해 주세요.")) {
+					$("input[name='userid']").focus();
+				}
+				return;
+			}
+			
+			if (pwd === "") {
+				if (alert("비밀번호를 입력해 주세요.")) {
+					$("input[name='pwd']").focus();
+				}
+				return;
+			}
+			
 			document.form1.action = "<%=request.getContextPath()%>/member_servlet/login.do";
 			document.form1.submit();
 		}
@@ -19,12 +36,46 @@ $(function() {
 	
 	$("input[name=pwd]").keyup(function(key){
 		if(key.keyCode == 13) {
+			let userid = $("input[name='userid']").val().trim();
+			let pwd = $("input[name='pwd']").val().trim();
+
+			if (userid === "") {
+				if (alert("아이디를 입력해 주세요.")) {
+					$("input[name='userid']").focus();
+				}
+				return;
+			}
+			
+			if (pwd === "") {
+				if (alert("비밀번호를 입력해 주세요.")) {
+					$("input[name='pwd']").focus();
+				}
+				return;
+			}
+			
 			document.form1.action = "<%=request.getContextPath()%>/member_servlet/login.do";
 			document.form1.submit();
 		}
 	});
 	
 	$("#btn_login").click(function() {
+		let userid = $("input[name='userid']").val().trim();
+		let pwd = $("input[name='pwd']").val().trim();
+
+		if (userid === "") {
+			if (alert("아이디를 입력해 주세요.")) {
+				$("input[name='userid']").focus();
+			}
+			return;
+		}
+		
+		if (pwd === "") {
+			if (alert("비밀번호를 입력해 주세요.")) {
+				$("input[name='pwd']").focus();
+			}
+			return;
+		}
+		
 		document.form1.action = "<%=request.getContextPath()%>/member_servlet/login.do";
 		document.form1.submit();
 	});

@@ -19,22 +19,22 @@ $(function() {
 		let pwd = $("input[name='pwd']").val().trim();
 
 		if (userid === "") {
-			if (confirm("아이디를 입력해 주세요.")) {
+			if (alert("아이디를 입력해 주세요.")) {
 				$("input[name='userid']").focus();
-			}
-			return;
-		}
-
-		if (name === "") {
-			if (confirm("이름을 입력해 주세요.")) {
-				$("input[name='name']").focus();
 			}
 			return;
 		}
 		
 		if (pwd === "") {
-			if (confirm("비밀번호를 입력해 주세요.")) {
+			if (alert("비밀번호를 입력해 주세요.")) {
 				$("input[name='pwd']").focus();
+			}
+			return;
+		}
+
+		if (name === "") {
+			if (alert("이름을 입력해 주세요.")) {
+				$("input[name='name']").focus();
 			}
 			return;
 		}
@@ -66,7 +66,7 @@ $(function() {
 		let userid = $("input[name='userid']").val().trim();
 
 		if (userid === "") {
-			if (confirm("아이디를 입력해 주세요.")) {
+			if (alert("아이디를 입력해 주세요.")) {
 				$("input[name='userid']").focus();
 			}
 			return;

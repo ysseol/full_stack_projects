@@ -8,7 +8,7 @@
 </head>
 <body>
 <%
-response.sendRedirect(request.getContextPath() + "/board_servlet/list.do");
+response.sendRedirect(request.getContextPath() + "/member/login.jsp");
 %>
 </body>
 </html>

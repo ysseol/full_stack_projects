@@ -40,7 +40,7 @@ public class MemberController extends HttpServlet {
 				map.put("count", list.size());
 				request.setAttribute("map", map);
 				
-				String page = "/board/index.jsp";
+				String page = "/board/list.jsp";
 				RequestDispatcher rd = request.getRequestDispatcher(page);
 				rd.forward(request, response);
 		    } else {

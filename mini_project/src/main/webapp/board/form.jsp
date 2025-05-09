@@ -42,6 +42,22 @@ $(function() {
 		document.form1.action = "<%=request.getContextPath()%>/board_servlet/join.do";
 		document.form1.submit();
 	});
+	
+	if (localStorage.getItem("theme") === "dark") {
+		$("body").addClass("dark-mode");
+		$("#btn_darkmode").text("라이트 모드");
+	}
+	
+	$("#btn_darkmode").click(function () {
+		$("body").toggleClass("dark-mode");
+		if ($("body").hasClass("dark-mode")) {
+			$("#btn_darkmode").text("라이트 모드");
+			localStorage.setItem("theme", "dark");
+		} else {
+			$("#btn_darkmode").text("다크 모드");
+			localStorage.setItem("theme", "light");
+		}
+	});
 });
 </script>
 <style>
@@ -56,7 +72,7 @@ $(function() {
 }
 table, td, th {
 	border-collapse: collapse;
-	border: 1px solid black;
+	border: 2px solid black;
 	height: 30px;
 }
 table{
@@ -77,10 +93,48 @@ input{
 	box-sizing:border-box;
 	font-size:15px;
 }
+
+#btn_darkmode {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	padding: 10px 15px;
+	background-color: #eee;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	z-index: 999;
+}
+body.dark-mode {
+	background-color: #121212;
+	color: #ffffff;
+}
+body.dark-mode table, 
+body.dark-mode th, 
+body.dark-mode td {
+	border-color: #444;
+}
+body.dark-mode textarea,
+body.dark-mode input {
+	background-color: #333;
+	color: #fff;
+	border: 1px solid #555;
+}
+body.dark-mode button {
+	background-color: #555;
+	color: #fff;
+	border: 1px solid #888;
+}
+body.dark-mode #btn_darkmode {
+	background-color: #444;
+	color: #fff;
+	border: 1px solid #888;
+}
 </style>
 </head>
 
 <body>
+<button type="button" id="btn_darkmode">다크 모드</button>
+
 <div class="main-pos">
 	<h1 style="text-align: center;">게시판</h1>
 	

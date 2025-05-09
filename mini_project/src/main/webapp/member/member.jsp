@@ -129,7 +129,7 @@ input{
 	<table border="1">
 		<tr>
 			<th>아이디</th>
-			<td><input name="userid"><button type="button" id="btn_check">중복 확인</button></td>
+			<td><input name="userid" value="<%= request.getAttribute("userid") != null ? request.getAttribute("userid") : "" %>"><button type="button" id="btn_check">중복 확인</button></td>
 	 	</tr>
 	 	<tr>
 			<th>비밀번호</th>
@@ -137,7 +137,7 @@ input{
 	 	</tr>
 		<tr>
 			<th>이름</th>
-			<td><input name="name"></td>
+			<td><input name="name" value="<%= request.getAttribute("name") != null ? request.getAttribute("name") : "" %>"></td>
 	 	</tr>
 	 	
 	</table>

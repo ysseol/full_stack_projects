@@ -71,11 +71,15 @@ public class MemberController extends HttpServlet {
 				dao.insert(dto2);
 				
 				request.setAttribute("message", "등록 되었습니다.");
+				
 				String page = "/member/login.jsp";
 			    RequestDispatcher rd = request.getRequestDispatcher(page);
 			    rd.forward(request, response);
 			} else {
 				request.setAttribute("message", "이미 사용중인 아이디입니다.");
+				request.setAttribute("userid", userid);
+				request.setAttribute("name", name);
+				
 				String page = "/member/member.jsp";
 			    RequestDispatcher rd = request.getRequestDispatcher(page);
 			    rd.forward(request, response);

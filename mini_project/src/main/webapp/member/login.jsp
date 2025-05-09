@@ -132,7 +132,7 @@ input{
 		<table>
 		 	<tr>
 				<th>아이디</th>
-				<td><input name="userid" maxlength="15"></td>
+				<td><input name="userid" maxlength="15" value="<%= request.getAttribute("userid") != null ? request.getAttribute("userid") : "" %>"></td>
 		 	</tr>
 		 	<tr>
 				<th>비밀번호</th>

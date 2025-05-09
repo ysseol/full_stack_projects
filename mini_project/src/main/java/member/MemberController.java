@@ -71,6 +71,7 @@ public class MemberController extends HttpServlet {
 				dao.insert(dto2);
 				
 				request.setAttribute("message", "등록 되었습니다.");
+				request.setAttribute("userid", userid);
 				
 				String page = "/member/login.jsp";
 			    RequestDispatcher rd = request.getRequestDispatcher(page);

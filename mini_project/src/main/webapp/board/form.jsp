@@ -70,12 +70,12 @@ $(function() {
 	text-align: right;
 	margin-bottom: 5px;
 }
-table, td, th {
-	border-collapse: collapse;
+td, th {
 	border: 2px solid black;
 	height: 30px;
 }
 table{
+	border-collapse: collapse;
 	width: 100%;
 }
 td{
@@ -139,20 +139,24 @@ body.dark-mode #btn_darkmode {
 	<h1 style="text-align: center;">게시판</h1>
 	
 	<form name="form1" method="post">
-		<div class="btn-r">
-			<button type="button" id="btn_previous" onclick="">이전</button>
-			<button type="button" id="none_write">등록</button>
-			<button id="btn_logout" onclick="">로그 아웃</button>
-		</div>
 		
 		<table id="table1">
 			<tr>
+				<td colspan="2" style="border: none;">
+					<div class="btn-r">
+						<button type="button" id="btn_previous" onclick="">이전</button>
+						<button type="button" id="none_write">등록</button>
+						<button id="btn_logout" onclick="">로그 아웃</button>
+					</div>
+				</td>
+			</tr>
+			<tr>
 				<th style="width:100px;">제목</th>
-				<td style="padding:5px;"><input name="title"></td>
+				<td style="padding:5px;"><input name="title" maxlength='50'></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td style="padding:5px;"><textarea name="content"></textarea></td>
+				<td style="padding:5px;"><textarea name="content" maxlength='5000'></textarea></td>
 			</tr>
 		</table>
 	</form>

@@ -21,7 +21,7 @@ $(document).ready(function() {
 	
 	
 	let currentPage = 1;
-	var rowsPerPage = 10;
+	var rowsPerPage = 11;
     var rows2 = $('#table1 tbody tr');
     var totalRows = rows2.length;
     var totalPages = Math.ceil(totalRows / rowsPerPage);
@@ -171,24 +171,29 @@ function view(id, clickedCell) {
 
 </script>
 <style>
+body {
+    display: flex;
+    justify-content: center; /* 수평 중앙 */
+
+}
 .main-pos{
 	position: absolute;
-	left: 20%;
 	width:60%;
 }
 .btn-r{
 	text-align: right;
 	margin-bottom: 5px;
 }
-table, td, th {
-	border-collapse: collapse;
+td, th {
 	border: 2px solid black;
 	height: 30px;
+	white-space:nowrap;
 }
 th{
 	height: 50px;
 }
 table{
+	border-collapse: collapse;
 	width: 100%;
 }
 a{
@@ -231,6 +236,7 @@ body.dark-mode button {
 	color: #fff;
 	border: 1px solid #888;
 }
+
 </style>
 </head>
 
@@ -240,20 +246,23 @@ body.dark-mode button {
 <div class="main-pos">
 	<h1 style="text-align: center;">게시판</h1>
 	
-	<div class="btn-r">
-		<button type="button" onclick="location.href='<%=request.getContextPath()%>/board/form.jsp'">글쓰기</button>
-		<button type="button" id="btn_modify">수정</button>
-		<button type="button" id="btn_delete">삭제</button>
-		<button type="button" id="btn_logout">로그아웃</button>
-	</div>
-	
 	<table id="table1">
 		<thead>
 			<tr>
-				<th><input id="checkboxAll" type="checkbox"></th>
-				<th style="width:80px;">번호</th>
+				<td colspan="4" style="border: none;">
+					<div class="btn-r">
+						<button type="button" onclick="location.href='<%=request.getContextPath()%>/board/form.jsp'">글쓰기</button>
+						<button type="button" id="btn_modify">수정</button>
+						<button type="button" id="btn_delete">삭제</button>
+						<button type="button" id="btn_logout">로그아웃</button>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th style="width:10%;"><input id="checkboxAll" type="checkbox"></th>
+				<th style=" width:10%;">번호</th>
 				<th>제목</th>
-				<th>등록 일자</th>
+				<th style="width:20%;">등록 일자</th>
 			</tr>
 		</thead>
 	<%
@@ -263,11 +272,11 @@ body.dark-mode button {
 	%>
 		<tbody>
 			<tr>
-				<td style="text-align: center; width:40px;"><input class="checkbox" type="checkbox"></td>
-				<td style="text-align: center; width: 100px;" id="td1" class="td1"></td>
+				<td style="text-align: center;"><input class="checkbox" type="checkbox"></td>
+				<td style="text-align: center;" id="td1" class="td1"></td>
 				<td style="display: none;"><%=dto.getId()%></td>
 				<td style="padding-left:5px;"><a href="#" onclick="view('<%=dto.getId()%>', this)"><%=dto.getTitle()%></td>
-				<td style="width:200px; padding-left:5px;"><%=dto.getReg_date()%></td>
+				<td style="padding-left:5px;"><%=dto.getReg_date()%></td>
 			</tr>
 		</tbody>
 	<%

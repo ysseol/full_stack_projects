@@ -77,12 +77,12 @@ $(function() {
 	text-align: right;
 	margin-bottom: 5px;
 }
-table, td, th {
-	border-collapse: collapse;
+td, th {
 	border: 2px solid black;
 	height: 30px;
 }
 table{
+	border-collapse: collapse;
 	width: 100%;
 }
 td{
@@ -144,28 +144,32 @@ body.dark-mode #btn_darkmode {
 <div class="main-pos">
 	<h1 style="text-align: center;">게시판</h1>
 	
-	<div class="btn-r">
-		<button type="button" id="btn_previous" onclick="">이전</button>
-		<button type="button" id="btnUpdate">저장</button>
-		<button type="button" id="btnDelete">삭제</button>
-		<button type="button" id="btn_logout">로그 아웃</button>
-	</div>
 	<%
 	BoardDTO dto = (BoardDTO) request.getAttribute("dto");
 	%>
 	<form name="form1" method="post">
 	<table>
 		<tr>
+			<td colspan="2" style="border: none;">
+				<div class="btn-r">
+					<button type="button" id="btn_previous" onclick="">이전</button>
+					<button type="button" id="btnUpdate">저장</button>
+					<button type="button" id="btnDelete">삭제</button>
+					<button type="button" id="btn_logout">로그 아웃</button>
+				</div>
+			</td>
+		</tr>
+		<tr>
 			<th style="width:100px;">번호</th>
 			<td><%=dto.getNum()%></td>
 		</tr>
 	 	<tr>
 			<th>제목</th>
-			<td style="padding:5px;"><input name="title" value="<%=dto.getTitle()%>"></td>
+			<td style="padding:5px;"><input name="title" maxlength='50' value="<%=dto.getTitle()%>"></td>
 	 	</tr>
 	 	<tr>
 			<th>내용</th>
-			<td style="padding:5px;"><textarea name="content"><%=dto.getContent()%></textarea></td>
+			<td style="padding:5px;"><textarea name="content" maxlength='5000'><%=dto.getContent()%></textarea></td>
 	 	</tr>
 	 	<tr>
 			<th>등록일자</th>

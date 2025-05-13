@@ -45,6 +45,8 @@ public class MemberController extends HttpServlet {
 				rd.forward(request, response);
 		    } else {
 		    	request.setAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다.");
+		    	request.setAttribute("userid", userid);
+		    	
 		        String page = "/member/login.jsp";
 		        RequestDispatcher rd = request.getRequestDispatcher(page);
 		        rd.forward(request, response);

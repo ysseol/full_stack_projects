@@ -21,7 +21,7 @@ $(document).ready(function() {
 	
 	
 	let currentPage = 1;
-	var rowsPerPage = 11;
+	var rowsPerPage = 10;
     var rows2 = $('#table1 tbody tr');
     var totalRows = rows2.length;
     var totalPages = Math.ceil(totalRows / rowsPerPage);

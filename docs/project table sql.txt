@@ -1,0 +1,22 @@
+ip : 192.168.0.30
+port : 1521
+sid : xe
+user : project
+password : 1234
+
+create table board (
+id varchar2(50) primary key,
+title varchar2(50) not null,
+content varchar2(50) not null,
+reg_date date default sysdate
+);
+
+create table member (
+userid varchar2(50) primary key,
+pwd varchar2(50) not null,
+name varchar2(50) not null
+);
+
+commit;
+
+

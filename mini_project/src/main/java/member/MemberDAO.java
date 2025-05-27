@@ -24,7 +24,7 @@ public class MemberDAO {
 		try {
 			
 			conn = DB.dbConn();
-			String sql = "select * from member2 where userid=? and pwd=?";
+			String sql = "select * from member where userid=? and pwd=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getUserid());
@@ -68,7 +68,7 @@ public class MemberDAO {
 		try {
 			
 			conn = DB.dbConn();
-			String sql = "insert into member2 (userid, pwd, name) values (?,?,?)";
+			String sql = "insert into member (userid, pwd, name) values (?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getUserid());
@@ -102,7 +102,7 @@ public class MemberDAO {
 		try {
 			
 			conn = DB.dbConn();
-			String sql = "select count(*) from member2 where userid=?";
+			String sql = "select count(*) from member where userid=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getUserid());

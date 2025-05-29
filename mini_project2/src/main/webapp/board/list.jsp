@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>게시판 목록</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
-
 <script>
 $(document).ready(function () {
     let rows = $('#table1 tbody tr');
@@ -139,8 +139,8 @@ function view(id, clickedCell) {
     color: white;
 }
 </style>
-</head>
 
+</head>
 <body>
 <button type="button" id="btn_darkmode" class="btn btn-outline-dark">다크 모드</button>
 
@@ -153,7 +153,7 @@ function view(id, clickedCell) {
         <button type="button" class="btn btn-success" onclick="location.href='<%=request.getContextPath()%>/board/form.jsp'">글쓰기</button>
         <button type="button" id="btn_modify" class="btn btn-primary">수정</button>
         <button type="button" id="btn_delete" class="btn btn-danger">삭제</button>
-        <button type="button" id="btn_logout" class="btn btn-secondary">로그아웃</button>
+        <button type="button" id="btn_logout" class="btn btn-warning text-white">로그아웃</button>
     </div>
 
     <table id="table1" class="table table-bordered table-hover">
@@ -189,7 +189,5 @@ function view(id, clickedCell) {
         <input type="hidden" id="id" name="id">
     </form>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

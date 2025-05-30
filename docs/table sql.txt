@@ -1,3 +1,5 @@
+drop table board;
+
 create table board (
 id varchar2(50) primary key,
 title varchar2(50) not null,
@@ -5,6 +7,8 @@ content varchar2(50) not null,
 reg_date date default sysdate
 );
 
+
+drop table member;
 
 create table member (
 userid varchar2(50) primary key,

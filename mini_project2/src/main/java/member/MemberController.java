@@ -37,7 +37,7 @@ public class MemberController extends HttpServlet {
 			
 			if (result == 1) {
 				Map<String, Object> map = new HashMap<String, Object>();
-				List<BoardDTO> list = dao2.list();
+				List<BoardDTO> list = dao2.listBoard();
 				
 				map.put("list", list);
 				map.put("count", list.size());

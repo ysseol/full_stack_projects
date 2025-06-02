@@ -21,13 +21,13 @@ public class BoardController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String url = request.getRequestURI();
-		String context = request.getContextPath();
+		String path = request.getContextPath();
 		BoardDAO dao = new BoardDAO();
 		
 		if (url.indexOf("list.do") != -1) {
 			
 			Map<String, Object> map = new HashMap<String, Object>();
-			List<BoardDTO> list = dao.list();
+			List<BoardDTO> list = dao.listBoard();
 			
 			map.put("list", list);
 			map.put("count", list.size());
@@ -45,20 +45,26 @@ public class BoardController extends HttpServlet {
 			String content = request.getParameter("content");
 			
 			BoardDTO dto = new BoardDTO();
+			
 			dto.setId(id);
 			dto.setTitle(title);
 			dto.setContent(content);
 			
-			dao.insert(dto);
-			response.sendRedirect(context + "/board_servlet/list.do");
+			dao.insertBoard(dto);
+			response.sendRedirect(path + "/board_servlet/list.do");
 			
 		} else if (url.indexOf("view.do") != -1) {
 			
 			String id = request.getParameter("id");
 			int num = Integer.parseInt(request.getParameter("num"));
 			
-			BoardDTO dto = dao.detail(id, num);
-			request.setAttribute("dto", dto);
+			BoardDTO dto = new BoardDTO();
+			
+			dto.setId(id);
+			dto.setNum(num);
+			
+			BoardDTO dto2 = dao.detailBoard(dto);
+			request.setAttribute("dto", dto2);
 			
 			String page = "/board/view.jsp";
 			RequestDispatcher rd = request.getRequestDispatcher(page);
@@ -75,8 +81,8 @@ public class BoardController extends HttpServlet {
 			dto.setTitle(title);
 			dto.setContent(content);
 			
-			dao.update(dto);
-			response.sendRedirect(context + "/board_servlet/list.do");
+			dao.updateBoard(dto);
+			response.sendRedirect(path + "/board_servlet/list.do");
 			
 		} else if (url.indexOf("delete.do") != -1) {
 			
@@ -85,10 +91,10 @@ public class BoardController extends HttpServlet {
 			List<String> idList = Arrays.stream(id.split(",")).collect(Collectors.toList());
 			
 			for (String i : idList) {  
-	            dao.delete(i);
+	            dao.deleteBoard(i);
 	        }
 			
-			response.sendRedirect(context + "/board_servlet/list.do");
+			response.sendRedirect(path + "/board_servlet/list.do");
 			
 		} else if (url.indexOf("logout.do") != -1) {
 			

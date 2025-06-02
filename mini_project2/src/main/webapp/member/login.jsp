@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="member.MemberDTO" %>
 <!DOCTYPE html>
 <html>
@@ -7,6 +8,7 @@
 <title>게시판 로그인</title>
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script>
@@ -42,13 +44,11 @@ $(function () {
         document.form1.action = "${pageContext.request.contextPath}/member_servlet/member.do";
         document.form1.submit();
     });
-</script>
 
-<c:if test="${not empty message}">
-    <script>alert("${message}");</script>
-</c:if>
+    <c:if test="${not empty message}">
+        alert("<c:out value='${message}'/>");
+    </c:if>
 
-<script>
     // Dark Mode
     if (localStorage.getItem("theme") === "dark") {
         $("body").addClass("bg-dark text-light");
@@ -113,7 +113,5 @@ body {
     </div>
 </div>
 
-<!-- Bootstrap Bundle JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

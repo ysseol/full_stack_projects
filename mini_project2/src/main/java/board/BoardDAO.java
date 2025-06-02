@@ -31,7 +31,13 @@ public class BoardDAO {
 				String content = rs.getString("content");
 				String reg_date = rs.getString("reg_date");
 				
-				BoardDTO dto = new BoardDTO(id, title, content, reg_date);
+				BoardDTO dto = new BoardDTO();
+				
+				dto.setId(id);
+				dto.setTitle(title);
+				dto.setContent(content);
+				dto.setReg_date(reg_date);
+				
 				items.add(dto);
 				
 			}

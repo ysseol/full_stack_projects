@@ -7,6 +7,7 @@
 <title>게시판 회원가입</title>
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <script>
@@ -60,13 +61,9 @@ $(function () {
         }
     });
 
-</script>
-
 <c:if test="${not empty message}">
-    <script>alert("${message}");</script>
+	alert("<c:out value='${message}'/>");
 </c:if>
-
-<script>
 
     if (localStorage.getItem("theme") === "dark") {
         $("body").addClass("bg-dark text-light");
@@ -140,7 +137,5 @@ body {
 
 <iframe name="checkFrame" style="display:none;"></iframe>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

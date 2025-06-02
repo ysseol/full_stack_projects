@@ -19,7 +19,7 @@ public class MemberController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = request.getRequestURI();
-		String context = request.getContextPath();
+		String path = request.getContextPath();
 		MemberDAO dao = new MemberDAO();
 		BoardDAO dao2 = new BoardDAO();
 		
@@ -28,7 +28,10 @@ public class MemberController extends HttpServlet {
 			String userid = request.getParameter("userid");
 			String pwd = request.getParameter("pwd");
 			
-			MemberDTO dto = new MemberDTO(userid, pwd);
+			MemberDTO dto = new MemberDTO();
+			
+			dto.setUserid(userid);
+			dto.setPwd(pwd);
 			
 			int result  = dao.login(dto);
 			
@@ -38,8 +41,8 @@ public class MemberController extends HttpServlet {
 				
 				map.put("list", list);
 				map.put("count", list.size());
-				request.setAttribute("map", map);
 				
+				request.setAttribute("map", map);
 				String page = "/board/list.jsp";
 				RequestDispatcher rd = request.getRequestDispatcher(page);
 				rd.forward(request, response);
@@ -64,8 +67,15 @@ public class MemberController extends HttpServlet {
 			String pwd = request.getParameter("pwd");
 			String name = request.getParameter("name");
 			
-			MemberDTO dto1 = new MemberDTO(userid);
-			MemberDTO dto2 = new MemberDTO(userid, pwd, name);
+			MemberDTO dto1 = new MemberDTO();
+			
+			dto1.setUserid(userid);
+			
+			MemberDTO dto2 = new MemberDTO();
+			
+			dto2.setUserid(userid);
+			dto2.setPwd(pwd);
+			dto2.setName(name);
 			
 			int result = dao.check(dto1);
 			
@@ -92,7 +102,9 @@ public class MemberController extends HttpServlet {
 			
 			String userid = request.getParameter("userid");
 			
-			MemberDTO dto = new MemberDTO(userid);
+			MemberDTO dto = new MemberDTO();
+			
+			dto.setUserid(userid);
 			
 			int result = dao.check(dto);
 			

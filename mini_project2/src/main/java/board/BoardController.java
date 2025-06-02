@@ -44,7 +44,11 @@ public class BoardController extends HttpServlet {
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			
-			BoardDTO dto = new BoardDTO(id, title, content);
+			BoardDTO dto = new BoardDTO();
+			dto.setId(id);
+			dto.setTitle(title);
+			dto.setContent(content);
+			
 			dao.insert(dto);
 			response.sendRedirect(context + "/board_servlet/list.do");
 			
@@ -66,7 +70,11 @@ public class BoardController extends HttpServlet {
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			
-			BoardDTO dto = new BoardDTO(id, title, content);
+			BoardDTO dto = new BoardDTO();
+			dto.setId(id);
+			dto.setTitle(title);
+			dto.setContent(content);
+			
 			dao.update(dto);
 			response.sendRedirect(context + "/board_servlet/list.do");
 			

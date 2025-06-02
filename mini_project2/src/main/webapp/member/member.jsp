@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +32,7 @@ $(function () {
             return;
         }
 
-        document.form1.action = "<%=request.getContextPath()%>/member_servlet/register.do";
+        document.form1.action = "${pageContext.request.contextPath}/member_servlet/register.do";
         document.form1.target = "";
         document.form1.submit();
     }
@@ -48,7 +49,7 @@ $(function () {
             $("input[name='userid']").focus();
             return;
         }
-        document.form1.action = "<%=request.getContextPath()%>/member_servlet/check.do";
+        document.form1.action = "${pageContext.request.contextPath}/member_servlet/check.do";
         document.form1.target = "checkFrame";
         document.form1.submit();
     });
@@ -59,9 +60,13 @@ $(function () {
         }
     });
 
-    <% if (request.getAttribute("message") != null) { %>
-        alert("<%= request.getAttribute("message") %>");
-    <% } %>
+</script>
+
+<c:if test="${not empty message}">
+    <script>alert("${message}");</script>
+</c:if>
+
+<script>
 
     if (localStorage.getItem("theme") === "dark") {
         $("body").addClass("bg-dark text-light");
@@ -110,7 +115,7 @@ body {
                         <label for="userid" class="form-label">아이디</label>
                         <div class="input-group">
                             <input type="text" name="userid" id="userid" class="form-control"
-                                   value="<%= request.getAttribute("userid") != null ? request.getAttribute("userid") : "" %>">
+                                   value="<c:out value='${userid}' default=''/>">
                             <button type="button" id="btn_check" class="btn btn-outline-secondary">중복 확인</button>
                         </div>
                     </div>
@@ -121,7 +126,7 @@ body {
                     <div class="mb-3">
                         <label for="name" class="form-label">이름</label>
                         <input type="text" name="name" id="name" class="form-control"
-                               value="<%= request.getAttribute("name") != null ? request.getAttribute("name") : "" %>">
+                               value="<c:out value='${name}' default=''/>">
                     </div>
                     <div class="d-grid gap-2">
                         <button type="button" id="btn_register" class="btn btn-primary">등록</button>

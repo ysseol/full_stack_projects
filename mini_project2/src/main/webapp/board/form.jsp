@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,13 +12,13 @@
 <script>
 $(function () {
     $("#btn_previous").click(function () {
-        document.form1.action = "<%=request.getContextPath()%>/board_servlet/list.do";
+        document.form1.action = "${pageContext.request.contextPath}/board_servlet/list.do";
         document.form1.submit();
     });
 
     $("#btn_logout").click(function () {
         if (confirm("로그 아웃할까요?")) {
-            document.form1.action = "<%=request.getContextPath()%>/board_servlet/logout.do";
+            document.form1.action = "${pageContext.request.contextPath}/board_servlet/logout.do";
             document.form1.submit();
         }
     });
@@ -38,7 +39,7 @@ $(function () {
             return;
         }
 
-        document.form1.action = "<%=request.getContextPath()%>/board_servlet/join.do";
+        document.form1.action = "${pageContext.request.contextPath}/board_servlet/join.do";
         document.form1.submit();
     });
 

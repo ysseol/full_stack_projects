@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="board.BoardDTO" %>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,7 @@
 <script>
 $(function () {
     $("#btn_previous").click(function () {
-        document.form1.action = "<%=request.getContextPath()%>/board_servlet/list.do";
+        document.form1.action = "${pageContext.request.contextPath}/board_servlet/list.do";
         document.form1.submit();
     });
 
@@ -29,20 +30,20 @@ $(function () {
             $("textarea[name='content']").focus();
             return;
         }
-        document.form1.action = "<%=request.getContextPath()%>/board_servlet/update.do";
+        document.form1.action = "${pageContext.request.contextPath}/board_servlet/update.do";
         document.form1.submit();
     });
 
     $("#btnDelete").click(function () {
         if (confirm("삭제할까요?")) {
-            document.form1.action = "<%=request.getContextPath()%>/board_servlet/delete.do";
+            document.form1.action = "${pageContext.request.contextPath}/board_servlet/delete.do";
             document.form1.submit();
         }
     });
 
     $("#btn_logout").click(function () {
         if (confirm("로그아웃 하시겠습니까?")) {
-            document.form1.action = "<%=request.getContextPath()%>/board_servlet/logout.do";
+            document.form1.action = "${pageContext.request.contextPath}/board_servlet/logout.do";
             document.form1.submit();
         }
     });
@@ -93,29 +94,26 @@ $(function () {
 	    <button type="button" id="btn_logout" class="btn btn-warning text-white">로그아웃</button>
     </div>
     
-    <%
-    BoardDTO dto = (BoardDTO) request.getAttribute("dto");
-    %>
     <form name="form1" method="post">
         <table class="table table-bordered table-hover">
 	            <tr>
 	                <th class="table-light" style="width: 15%;">번호</th>
-	                <td><%=dto.getNum()%></td>
+	                <td>${dto.num}</td>
 	            </tr>
 	            <tr>
 	                <th class="table-light">제목</th>
-	                <td><input type="text" name="title" class="form-control" maxlength="50" value="<%=dto.getTitle()%>"></td>
+	                <td><input type="text" name="title" class="form-control" maxlength="50" value="${dto.title}"></td>
 	            </tr>
 	            <tr>
 	                <th class="table-light">내용</th>
-	                <td><textarea name="content" class="form-control" maxlength="5000" rows="10"><%=dto.getContent()%></textarea></td>
+	                <td><textarea name="content" class="form-control" maxlength="5000" rows="10">${dto.content}</textarea></td>
 	            </tr>
 	            <tr>
 	                <th class="table-light">등록일자</th>
-	                <td><%=dto.getReg_date()%></td>
+	                <td>${dto.reg_date}</td>
 	            </tr>
         </table>
-        <input type="hidden" name="id" value="<%=dto.getId()%>">
+        <input type="hidden" name="id" value="${dto.id}">
     </form>
 </div>
 </body>

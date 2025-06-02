@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*" %>
 <%@ page import="board.*" %>
 <!DOCTYPE html>
@@ -67,7 +68,7 @@ $(document).ready(function () {
             let row = checked.closest('tr');
             $('#num').val(row.find('td.td1').text().trim());
             $('#id').val(row.find('td:hidden').text().trim());
-            document.form1.action = "<%=request.getContextPath()%>/board_servlet/view.do";
+            document.form1.action = "${pageContext.request.contextPath}/board_servlet/view.do";
             document.form1.submit();
         } else {
             alert(checked.length === 0 ? "게시글을 선택해주세요." : "하나의 게시글만 선택해주세요.");
@@ -87,14 +88,14 @@ $(document).ready(function () {
                 ids.push($(this).find('td:hidden').text().trim());
             });
             $('#id').val(ids.join(','));
-            document.form1.action = "<%=request.getContextPath()%>/board_servlet/delete.do";
+            document.form1.action = "${pageContext.request.contextPath}/board_servlet/delete.do";
             document.form1.submit();
         }
     });
 
     $('#btn_logout').click(function () {
         if (confirm("로그아웃 하시겠습니까?")) {
-            document.form1.action = "<%=request.getContextPath()%>/board_servlet/logout.do";
+            document.form1.action = "${pageContext.request.contextPath}/board_servlet/logout.do";
             document.form1.submit();
         }
     });
@@ -150,7 +151,7 @@ function view(id, clickedCell) {
     </div>
 
     <div class="mb-3 d-flex justify-content-end gap-2">
-        <button type="button" class="btn btn-success" onclick="location.href='<%=request.getContextPath()%>/board/form.jsp'">글쓰기</button>
+        <button type="button" class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/board/form.jsp'">글쓰기</button>
         <button type="button" id="btn_modify" class="btn btn-primary">수정</button>
         <button type="button" id="btn_delete" class="btn btn-danger">삭제</button>
         <button type="button" id="btn_logout" class="btn btn-warning text-white">로그아웃</button>
@@ -166,25 +167,21 @@ function view(id, clickedCell) {
             </tr>
         </thead>
         <tbody>
-            <%
-            Map map = (Map) request.getAttribute("map");
-            List<BoardDTO> items = (List) map.get("list");
-            for (BoardDTO dto : items) {
-            %>
+            <c:forEach var="dto" items="${map.list}">
             <tr>
                 <td class="text-center"><input type="checkbox" class="checkbox form-check-input"></td>
                 <td class="text-center td1"></td>
-                <td style="display: none;"><%=dto.getId()%></td>
-                <td><a href="#" onclick="view('<%=dto.getId()%>', this)" class="text-decoration-none"><%=dto.getTitle()%></a></td>
-                <td><%=dto.getReg_date()%></td>
+                <td style="display: none;">${dto.id}</td>
+                <td><a href="#" onclick="view('${dto.id}', this)" class="text-decoration-none">${dto.title}</a></td>
+                <td>${dto.reg_date}</td>
             </tr>
-            <% } %>
+            </c:forEach>
         </tbody>
     </table>
 
     <div id="pagination" class="text-center my-3"></div>
 
-    <form name="form1" method="post" action="<%=request.getContextPath()%>/board_servlet/view.do">
+    <form name="form1" method="post" action="${pageContext.request.contextPath}/board_servlet/view.do">
         <input type="hidden" id="num" name="num">
         <input type="hidden" id="id" name="id">
     </form>

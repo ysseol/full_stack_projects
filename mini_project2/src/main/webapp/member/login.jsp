@@ -26,7 +26,7 @@ $(function () {
             return;
         }
 
-        document.form1.action = "<%=request.getContextPath()%>/member_servlet/login.do";
+        document.form1.action = "${pageContext.request.contextPath}/member_servlet/login.do";
         document.form1.submit();
     }
 
@@ -39,14 +39,16 @@ $(function () {
     $("#btn_login").click(loginAction);
 
     $("#btn_member").click(function () {
-        document.form1.action = "<%=request.getContextPath()%>/member_servlet/member.do";
+        document.form1.action = "${pageContext.request.contextPath}/member_servlet/member.do";
         document.form1.submit();
     });
+</script>
 
-    <% if (request.getAttribute("message") != null) { %>
-        alert("<%= request.getAttribute("message") %>");
-    <% } %>
+<c:if test="${not empty message}">
+    <script>alert("${message}");</script>
+</c:if>
 
+<script>
     // Dark Mode
     if (localStorage.getItem("theme") === "dark") {
         $("body").addClass("bg-dark text-light");
@@ -94,7 +96,7 @@ body {
                     <div class="mb-3">
                         <label for="userid" class="form-label">아이디</label>
                         <input type="text" class="form-control" name="userid" id="userid"
-                            value="<%= request.getAttribute("userid") != null ? request.getAttribute("userid") : "" %>"
+                            value="<c:out value='${userid}' default=''/>"
                             maxlength="15">
                     </div>
                     <div class="mb-3">

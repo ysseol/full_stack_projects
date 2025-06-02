@@ -7,9 +7,7 @@ import sqlmap.MybatisManager;
 public class MemberDAO {
 	
 	public int loginMember(MemberDTO dto) {
-
 		int result = 0;
-		
         SqlSession session = MybatisManager.getInstance().openSession();
         String sql = session.selectOne("member.login_member", dto);
         
@@ -22,18 +20,14 @@ public class MemberDAO {
     }
 	
 	public void insertMember(MemberDTO dto) {
-		
         SqlSession session = MybatisManager.getInstance().openSession();
         session.insert("member.insert_member", dto);
         session.commit();
         session.close();
-        
     }
 	
 	public int checkMember(MemberDTO dto) {
-		
 		int result = 0;
-		
 		SqlSession session = MybatisManager.getInstance().openSession();
 		String sql = session.selectOne("member.check_member", dto);
 		
@@ -47,5 +41,4 @@ public class MemberDAO {
 		
 		return result;
 	}
-	
 }

@@ -33,7 +33,7 @@ public class MemberController extends HttpServlet {
 			dto.setUserid(userid);
 			dto.setPwd(pwd);
 			
-			int result  = dao.login(dto);
+			int result  = dao.loginMember(dto);
 			
 			if (result == 1) {
 				Map<String, Object> map = new HashMap<String, Object>();
@@ -77,10 +77,10 @@ public class MemberController extends HttpServlet {
 			dto2.setPwd(pwd);
 			dto2.setName(name);
 			
-			int result = dao.check(dto1);
+			int result = dao.checkMember(dto1);
 			
 			if (result == 1) {
-				dao.insert(dto2);
+				dao.insertMember(dto2);
 				
 				request.setAttribute("message", "등록 되었습니다.");
 				request.setAttribute("userid", userid);
@@ -106,7 +106,7 @@ public class MemberController extends HttpServlet {
 			
 			dto.setUserid(userid);
 			
-			int result = dao.check(dto);
+			int result = dao.checkMember(dto);
 			
 			if (result == 1) {
 				request.setAttribute("message", "사용가능한 아이디입니다.");
